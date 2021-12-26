@@ -38,10 +38,11 @@ async function searchDetails ()
 {
     const publicKey = "8a5b1a52222fcbf1df02198165f0b100";
     const privateKey = "98ca0a4fa9ea38457b16d5d35740ca6ce6168923";
-
+    var ts = Date.now()
+    var hash = md5(ts + privateKey + publicKey);
     let query = document.getElementById('query').value;
 
-    let res = await fetch(`https://swapi.dev/api/people/?search=${ query }`);
+    let res = await fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=${ ts }&apikey=${ publicKey }&hash=${ hash }&nameStartsWith=${ query }&limit=20`);
     let data = await res.json();
     console.log("data:", data);
 
