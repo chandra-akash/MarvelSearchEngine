@@ -42,11 +42,11 @@ async function searchDetails ()
     var hash = md5(ts + privateKey + publicKey);
     let query = document.getElementById('query').value;
 
-    let res = await fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=${ ts }&apikey=${ publicKey }&hash=${ hash }&nameStartsWith=${ query }&limit=20`);
+    let res = await fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=${ ts }&apikey=${ publicKey }&hash=${ hash }&nameStartsWith=${ query }&limit=100`);
     let data = await res.json();
     console.log("data:", data);
 
-    return data.results;
+    return data.data.results;
 }
 
 function throttleFunction ()
@@ -64,11 +64,11 @@ function displayResults (d)
 {
     result_div.innerHTML = null;
     document.getElementById("marvelCharacter").style.display = 'block';
-    d.forEach(({ name, birth_year, gender, height, eye_color, mass, hair_color }) =>
+    d.forEach(({ name }) =>
     {
         console.log("name:", name);
-        console.log("birth_year:", birth_year);
-        console.log("gender:", gender);
+        // console.log("birth_year:", birth_year);
+        // console.log("gender:", gender);
         // console.log( document.getElementById( 'query' ).value );
 
         // dynamic result showing
@@ -84,19 +84,19 @@ function displayResults (d)
         pName.innerHTML = name;
         pName.className = "resultName";
 
-        let pDOB = document.createElement("p");
-        pDOB.innerHTML = birth_year;
-        pDOB.className = "resultDOB";
+        // let pDOB = document.createElement("p");
+        // pDOB.innerHTML = birth_year;
+        // pDOB.className = "resultDOB";
 
-        divNameDOBContainer.append(pName, pDOB);
+        // divNameDOBContainer.append(pName, pDOB);
 
-        let pGender = document.createElement("p");
-        pGender.innerHTML = gender;
-        pGender.className = "resultGender";
+        // let pGender = document.createElement("p");
+        // pGender.innerHTML = gender;
+        // pGender.className = "resultGender";
 
-        divInfo.append(divNameDOBContainer, pGender);
-        // console.log( "divInfo", divInfo );
-        divResult.append(divInfo);
+        // divInfo.append(divNameDOBContainer, pGender);
+        // // console.log( "divInfo", divInfo );
+        // divResult.append(divInfo);
         // console.log( "divResult", divResult );
         result_div.append(divResult);
 
