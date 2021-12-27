@@ -64,12 +64,9 @@ function displayResults (d)
 {
     result_div.innerHTML = null;
     document.getElementById("marvelCharacter").style.display = 'block';
-    d.forEach(({ name }) =>
+    d.forEach(({ name, thumbnail, comics }) =>
     {
-        console.log("name:", name);
-        // console.log("birth_year:", birth_year);
-        // console.log("gender:", gender);
-        // console.log( document.getElementById( 'query' ).value );
+        // console.log("69 name:", name);
 
         // dynamic result showing
         let divResult = document.createElement("div");
@@ -84,23 +81,20 @@ function displayResults (d)
         pName.innerHTML = name;
         pName.className = "resultName";
 
-        // let pDOB = document.createElement("p");
-        // pDOB.innerHTML = birth_year;
-        // pDOB.className = "resultDOB";
+        divNameDOBContainer.append(pName);
 
-        // divNameDOBContainer.append(pName, pDOB);
+        let characterThumbnail = document.createElement("img");
+        let url = `${ thumbnail.path }/standard_xlarge.jpg`
+        characterThumbnail.src = url;
+        characterThumbnail.className = "resultThumbnail";
 
-        // let pGender = document.createElement("p");
-        // pGender.innerHTML = gender;
-        // pGender.className = "resultGender";
-
-        // divInfo.append(divNameDOBContainer, pGender);
-        // // console.log( "divInfo", divInfo );
-        // divResult.append(divInfo);
-        // console.log( "divResult", divResult );
+        divInfo.append(divNameDOBContainer, characterThumbnail);
+        // console.log("98 divInfo", divInfo);
+        divResult.append(divInfo);
+        // console.log("100 divResult", divResult);
         result_div.append(divResult);
 
-        divInfo.onclick = function () { showCharacterDetails(name, birth_year, gender, height, eye_color, mass, hair_color) };
+        divInfo.onclick = function () { showCharacterDetails(name, thumbnail.path, comics.items) };
 
         if (document.getElementById('query').value == "")
         {
@@ -112,7 +106,6 @@ function displayResults (d)
         } else
         {
             console.log("qR2:", document.getElementById('query').value);
-
             document.getElementById("marvelCharacter").style.transition = 'max-height 5s';
             document.getElementById("searchImg").src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDExOC43ODMgMTE4Ljc4MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8cGF0aCBkPSJNMTE1Ljk3LDEwMS41OTdMODguNjYxLDc0LjI4NmM0LjY0LTcuMzg3LDcuMzMzLTE2LjExOCw3LjMzMy0yNS40ODhjMC0yNi41MDktMjEuNDktNDcuOTk2LTQ3Ljk5OC00Ny45OTYgICBTMCwyMi4yODksMCw0OC43OThjMCwyNi41MSwyMS40ODcsNDcuOTk1LDQ3Ljk5Niw0Ny45OTVjMTAuMTk3LDAsMTkuNjQyLTMuMTg4LDI3LjQxNC04LjYwNWwyNi45ODQsMjYuOTg2ICAgYzEuODc1LDEuODczLDQuMzMzLDIuODA2LDYuNzg4LDIuODA2YzIuNDU4LDAsNC45MTMtMC45MzMsNi43OTEtMi44MDZDMTE5LjcyLDExMS40MjMsMTE5LjcyLDEwNS4zNDcsMTE1Ljk3LDEwMS41OTd6ICAgIE00Ny45OTYsODEuMjQzYy0xNy45MTcsMC0zMi40NDMtMTQuNTI1LTMyLjQ0My0zMi40NDNzMTQuNTI2LTMyLjQ0NCwzMi40NDMtMzIuNDQ0YzE3LjkxOCwwLDMyLjQ0MywxNC41MjYsMzIuNDQzLDMyLjQ0NCAgIFM2NS45MTQsODEuMjQzLDQ3Ljk5Niw4MS4yNDN6IiBmaWxsPSIjMDAwMDAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIj48L3BhdGg+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPC9nPjwvc3ZnPg==";
             document.getElementById("appSearch").style.top = '26%';
@@ -123,17 +116,24 @@ function displayResults (d)
     });
 }
 
-function showCharacterDetails (name, birth_year, gender, height, eye_color, mass, hair_color)
+function showCharacterDetails (name, url, list)
 {
     document.getElementById("appSearch").style.display = 'none';
     document.getElementById("appShow").style.display = 'flex';
     document.getElementById("marvel_character-name").innerHTML = name;
-    document.getElementById("marvel_character-DOB").innerHTML = `Birth Year : ${ birth_year }`;
-    document.getElementById("marvel_character-Gender").innerHTML = `Gender : ${ gender }`;
-    document.getElementById("marvel_character-Height").innerHTML = `Height : ${ height }`;
-    document.getElementById("marvel_character-EyeColor").innerHTML = `Eye Color : ${ eye_color }`;
-    document.getElementById("marvel_character-Weight").innerHTML = `Mass : ${ mass }`;
-    document.getElementById("marvel_character-HairColor").innerHTML = `Hair Color : ${ hair_color }`;
+    let source = `${ url }/standard_xlarge.jpg`
+    document.getElementById("avengersImg").src = source;
+    console.log('126> name: ' + name);
+    console.log('127> url: ' + url);
+    console.log('128> list: ' + list);
+    list.forEach(({ name }) =>
+    {
+        let ul = document.createElement("ul");
+        let li = document.createElement("li");
+        li.innerHTML = name;
+        ul.append(li);
+        document.getElementById("comiclist").append(ul);
+    });
 }
 
 function mainRefreshedPage ()

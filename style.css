@@ -34,7 +34,7 @@
         }
 
         #marvelCharacter {
-            max-height: 300px;
+            max-height: 250px;
             overflow-y: scroll;
             /* overflow: hidden; */
             border-radius: 0 0 20px 20px;
@@ -256,7 +256,9 @@
         }
 
         .resultName:hover {
-            color: yellow;
+            color: orange;
+            font-size: large;
+            font-weight: bold;
         }
 
         .resultDOB {
@@ -264,9 +266,11 @@
             color: rgb(186, 188, 190);
         }
 
-        .resultGender {
+        .resultThumbnail {
             font-size: 12px;
             color: rgb(186, 188, 190);
+            height: 100px;
+            width: 100px;
         }
 
 
@@ -275,15 +279,16 @@
         }
 
         .character {
-            color: #ecd014;
+            height: 100vh;
+            color: #ec14b6;
             width: 80%;
-            max-width: 500px;
+            /* max-width: 500px; */
             border: 0;
             border-radius: 15px;
-            padding: 20px 15px;
+            /* padding: 20px 15px; */
             /* display: none; */
             cursor: pointer;
-            box-shadow: 0 0 0 #ecd014;
+            box-shadow: 0 0 0 #ec8e14;
             -webkit-animation: character 2s infinite;
             animation: character 2s infinite;
             display: -webkit-flex;
@@ -294,6 +299,7 @@
             justify-content: center;
             -webkit-animation: puff-in-center .7s cubic-bezier(.47, 0, .745, .715) both;
             animation: puff-in-center .7s cubic-bezier(.47, 0, .745, .715) both;
+            
         }
 
         .character,
@@ -311,24 +317,31 @@
             justify-content: space-evenly;
             -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
+            flex-direction: column;
         }
 
         .character>div>div {
-            border: 1px solid #ecd014;
+            border: 1px solid #ec14c8;
             border-radius: 10px;
             text-align: center;
             margin: 5px;
             background: transparent;
             transition: .2s;
-            width: 200px;
+            width: 250px;
+            height: 25vh;
         }
 
-        .character>div>div:hover,
-        .backButton:hover {
-            cursor: pointer;
-            color: #fff;
-            border: 1px solid #fff;
-            transition: .2s;
+        .characterThumbnail{
+            height: 250px;
+            width: 250px;
+            border-radius: 20px;
+            border: 2px dotted #ec14b6;
+        }
+
+        .list{
+            height: 65px;
+            width: 80%;
+            overflow-y: scroll;
         }
 
         .backButton {
@@ -337,14 +350,32 @@
             align-items: center;
             -webkit-justify-content: center;
             justify-content: center;
-            height: 30px;
-            margin: 50px 0;
-            border: 1px solid #ecd014;
+            /* height: 30px; */
+            margin: 20px 0;
+            border: 1px solid #ec8e14;
             border-radius: 10px;
-            color: #ecd014;
+            color: #ec8e14;
             font-size: 20px;
-            padding: 5%;
+            padding: 2%;
             display: -webkit-flex;
             display: flex;
             transition: .2s;
+        }
+
+        .character>div>div:hover,
+        .backButton:hover {
+            background-color: #ec8e14;
+            cursor: pointer;
+            color: #fff;
+            border: 1px solid #fff;
+            transition: .2s;
+        }
+
+        .resultPage {            
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            /* height: 96vh; */
+            width: 100%;
+            justify-content: center;
         }
